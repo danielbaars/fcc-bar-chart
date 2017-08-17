@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { json } from 'd3-request';
+import axios from 'axios';
 
 import BarChart from './bar_chart';
 
@@ -14,9 +14,9 @@ export default class App extends Component {
   }
   componentDidMount() {
     var _this = this;
-    this.serverRequest = json(DATA_URL, d => {
+    this.serverRequest = axios.get(DATA_URL).then((result) => {
       _this.setState({
-        data: d
+        data: result.data
       });
     })
   }
